@@ -3,6 +3,7 @@ import 'package:eyeme/pages/login.dart';
 import 'package:eyeme/pages/parents/Attendance_infor.dart';
 import 'package:eyeme/pages/parents/notification.dart';
 import 'package:eyeme/pages/parents/parents_profile.dart';
+import 'package:eyeme/pages/teachers/record_attendance.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: RecordAttendance(),
     );
   }
 }

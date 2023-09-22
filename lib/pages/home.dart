@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
    TabController? _tabController;
-  int _selectedIndex=0;
+  int _selectedIndex=1;
   @override
   void initState(){
     super.initState();
@@ -33,11 +33,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  void navigateTopBar(int index){
-    setState(() {
-      _selectedIndex=index;
-    });
-  }
+ // void navigateTopBar(int index){
+ //    setState(() {
+ //      _selectedIndex=index;
+ //    });
+ //  }
+
   final List<Widget> _pages=[
     //parent profile page
      ParentProfile(),
@@ -64,7 +65,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             leadingWidth: 100,
             automaticallyImplyLeading: false,
             actions: const [
-               Center(child: Text("Online"))
+               Padding(
+                 padding: EdgeInsets.all(12.0),
+                 child: Center(
+                     child: Icon(
+                         Icons.more_vert,
+
+                     )
+                 ),
+               )
             ],
             leading: const Center(
               child: Text(
@@ -73,14 +82,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
             ),
           ),
-          body: const TabBarView(
-              children:[
+          body: TabBarView(
+            controller: _tabController,
+              children:const [
                 ParentProfile(),
                 //attendance page
                 AttendanceInfor(),
                 //notification page
-                NotificationP()
+                NotificationP(),
+
               ] ,
+
       ),
     )
     );
