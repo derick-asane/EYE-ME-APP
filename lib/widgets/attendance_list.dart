@@ -59,14 +59,19 @@ class _AttendanceListState extends State<AttendanceList> {
           subtitle:  Text("Good morning $_isChecked"),
           trailing: Transform.scale(
             scale: 1.8,
-            child: Checkbox(
-                activeColor: Colors.red,
-                value: _isChecked,
-                onChanged: (bool? value){
-                  setState(() {
-                    _isChecked= value ?? false;
-                  });
-                } ),
+            child: Theme(
+              data: ThemeData(
+                unselectedWidgetColor: Colors.blue[200]
+              ),
+              child: Checkbox(
+                  activeColor: Colors.red,
+                  value: _isChecked,
+                  onChanged: (bool? value){
+                    setState(() {
+                      _isChecked= value ?? false;
+                    });
+                  } ),
+            ),
           ),
           leading: CircleAvatar(
             backgroundImage: const AssetImage("assets/images/girl.jpg") ,

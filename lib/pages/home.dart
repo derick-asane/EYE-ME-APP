@@ -93,7 +93,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 AttendanceInfor(),
                 //notification page
                 NotificationP(),
-
               ] ,
 
       ),

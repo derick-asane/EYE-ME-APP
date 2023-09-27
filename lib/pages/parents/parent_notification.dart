@@ -1,4 +1,4 @@
-import 'package:eyeme/pages/parents/notification_detail.dart';
+import 'package:eyeme/widgets/notification_detail.dart';
 import 'package:flutter/material.dart';
 
 class NotificationP extends StatefulWidget {
@@ -41,7 +41,7 @@ class _NotificationPState extends State<NotificationP> {
                         subtitle: const Text("Today "),
                         trailing: const Text("12:45", style: TextStyle(color: Colors.white),),
                         onTap:()=> Navigator.push(context,
-                           MaterialPageRoute(builder: (context)=> NotificationDetail())),
+                           MaterialPageRoute(builder: (context)=> const NotificationDetail())),
                       ),
                     );
                   }),

@@ -5,6 +5,6 @@ class NotificationDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Details"));
+    return const Center(child: Text("Details"));
   }
 }

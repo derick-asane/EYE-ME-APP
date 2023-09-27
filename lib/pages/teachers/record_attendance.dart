@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/attendance_list.dart';
 
 
@@ -15,9 +14,9 @@ class _RecordAttendanceState extends State<RecordAttendance> {
   @override
   Widget build(BuildContext context) {
 
-    List<bool> _isChecked = List.generate(30, (index) => false);
+    List<bool> isChecked = List.generate(30, (index) => false);
     if (kDebugMode) {
-      print(_isChecked);
+      print(isChecked);
     }
     var me="SE3";
     var mydate = "Friday 6";
@@ -58,10 +57,10 @@ class _RecordAttendanceState extends State<RecordAttendance> {
 
                       return AttendanceList(
                         index: index,
-                        isChecked: _isChecked[index],
+                        isChecked: isChecked[index],
                         onChanged: (bool value) {
                           setState(() {
-                            _isChecked[index] = value;
+                            isChecked[index] = value;
                           });
                         },
                       );

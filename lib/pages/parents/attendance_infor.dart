@@ -127,7 +127,7 @@ class _AttendanceInforState extends State<AttendanceInfor> {
                                    ),
                                    child: ListTile(
                                      dense: false,
-                                     leading: Text("$index", style: TextStyle(fontSize: 40),),
+                                     leading: Text("$index", style: const TextStyle(fontSize: 40),),
                                      trailing: const TimeState() ,
                                      title: Text("Computer security $index"),
                                      subtitle: const Text("Mr.Agbor Anderson"),

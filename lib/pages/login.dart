@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
     if (kDebugMode) {
       print(passCodeController);
     }
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()));
   }
 
   @override
@@ -106,7 +106,7 @@ class _LoginState extends State<Login> {
                       GestureDetector(
                         onTap: () => login(),
                         child: Container(
-                          padding: EdgeInsets.all(25.0),
+                          padding: const EdgeInsets.all(25.0),
                           decoration: BoxDecoration(
                             color: Colors.blue[200],
                             borderRadius: BorderRadius.circular(10)
