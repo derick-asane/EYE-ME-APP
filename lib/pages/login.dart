@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'package:eyeme/models/credntials_model.dart';
 import 'package:eyeme/pages/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 
 
 
@@ -13,9 +17,71 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String _selectedItem= 'Parent';
+  late String _selectedItem ="Parent";
   final _formKey = GlobalKey<FormState>();
   TextEditingController passCodeController = TextEditingController();
+
+  Future<void> fetchData(void Function() redirectionCallback) async {
+    Uri url= Uri.parse('http://192.168.43.34:8080/api/students/authParent');
+    if(_selectedItem == "parent"){
+       url = Uri.parse('http://192.168.43.34:8080/api/students/authParent');
+    }else if(_selectedItem == "teacher"){
+      // url = Uri.parse('https://api.example.com/data');
+    }else if(_selectedItem == "admin"){
+      // url = Uri.parse('https://api.example.com/data');
+    }else{
+     // url = Uri.parse('https://api.example.com/data');
+    }
+
+
+    try {
+      final response = await http.post(url, body: {'passcode': passCodeController.text});
+
+      if (response.statusCode == 200) {
+        // Request successful, parse the response body
+        final  jsonData = json.decode(response.body);
+        if (kDebugMode) {
+          print("logging successfully");
+        }
+        final dynamic usersData = jsonData['data'];
+        List<dynamic> usersJson = [];
+        if (usersData != null) {
+           if (usersData is Map<String, dynamic>) {
+            usersJson.add(usersData);
+          }
+        }
+        // if (usersJson.isNotEmpty) {
+        //   // Process the user data
+        //   for (var user in usersJson) {
+        //     // Access user properties and perform operations
+        //     final int id = user['id'];
+        //     final String name = user['name'];
+        //     final String email = user['email'];
+        //
+        //     // Do something with the user data
+        //     print('User ID: $id');
+        //     print('Name: $name');
+        //     print('Email: $email');
+        //     print('---');
+        //   }
+
+        if (usersJson.isNotEmpty) {
+
+          redirectionCallback();
+        }
+
+      } else {
+        // Request failed
+        print('Request failed with status: ${response.statusCode}');
+        print("logging failed");
+      }
+    } catch (error) {
+      // Error occurred during the request
+      print('Error: $error');
+      print("error failed");
+
+    }
+  }
 
   void login(){
     if (kDebugMode) {
@@ -24,8 +90,14 @@ class _LoginState extends State<Login> {
     if (kDebugMode) {
       print(passCodeController);
     }
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()));
+    void redirect() {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Home()));
+    }
+    fetchData(redirect);
+
+
   }
+  final List<String> userRoles = ['Parent', 'Attendance Service', 'Teacher', 'Admin'];
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +171,6 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
-
 
 
                       const SizedBox(height: 40.0,),

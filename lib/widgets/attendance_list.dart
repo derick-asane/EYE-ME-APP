@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
 class AttendanceList extends StatefulWidget {
   final int index;
   final bool isChecked;
